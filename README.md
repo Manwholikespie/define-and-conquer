@@ -6,6 +6,6 @@ Execute with:
 
 ----
 ##Dependencies
-[wikipedia](https://pypi.python.org/pypi/wikipedia/)
-[fuzzywuzzy](https://github.com/seatgeek/fuzzywuzzy)
-[python-Levenshtein](https://pypi.python.org/pypi/python-Levenshtein/0.12.0)
+[wikipedia](https://pypi.python.org/pypi/wikipedia/)  
+[fuzzywuzzy](https://github.com/seatgeek/fuzzywuzzy)  
+[python-Levenshtein](https://pypi.python.org/pypi/python-Levenshtein/0.12.0)  
