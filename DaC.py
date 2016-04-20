@@ -1,38 +1,35 @@
-from fuzzywuzzy import fuzz
-from fuzzywuzzy import process
+from bs4 import BeautifulSoup
+import requests
+import string
 import wikipedia
 
-lines = [line.rstrip('\n') for line in open('terms2.txt')]
-notFound = []
-paragraphs = []
+def printAll(listName):
+    for item in listName:
+        print item[0] + ": " + item[1]
+        print("\n")
 
-arrayMax = len(lines)
-rangeMax = len(lines) - 1
-finished = False
-print(rangeMax)
-print arrayMax
+def readTerms():
+    # read the terms from the file: terms.txt
+    terms = [line.rstrip('\n') for line in open('terms.txt')]
+    return terms
 
-
-def summarize(x):
+def searchTerm(term):
+    # using the wikipedia module, print out the first 5 sentences of the article
+    # introduction / summary.
     try:
-        while x in xrange(0,arrayMax):
-            print lines[x]
-            print wikipedia.summary(lines[x], sentences=5)
-            print('\n\n')
-            x+=1
-            if x == rangeMax:
-                finished = True
+        summary = wikipedia.summary(term, sentences=5)
     except:
-        if x != rangeMax:
-            print(lines[x] + " was not able to be found.\n\n")
-            notFound.append(lines[x])
-            x+=1
-            summarize(x)
-        if x == rangeMax:
-            finished = True
+        summary = "Definition could not be found."
+    return (term, summary)
 
-if arrayMax > 0 and finished != True:
-    summarize(0)
-    print("The list of unindentified terms includes:\n" + str(notFound))
-else:
-    print "Please enter some terms in terms2.txt"
+
+# ============================   MAIN FUNCTION   ===============================
+print("Beginning the search...")
+definitions = []
+terms = readTerms()
+for term in terms:
+    # search for the term and store its definition.
+    definitions.append(searchTerm(term))
+
+printAll(definitions)
+# ==========================   END MAIN FUNCTION   =============================
