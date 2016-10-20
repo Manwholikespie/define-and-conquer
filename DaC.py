@@ -9,6 +9,16 @@ def printAll(listName):
         print "- " + item[0] + ": " + item[1]
         print("")
 
+def writeTerms(termData):
+    f = open("terms.md","w")
+    f.write((u"# Define and Conquer  \n").encode('UTF-8'))
+    for item in termData:
+        # item[0] = term name
+        # item[1] = term definition
+        f.write((u"**"+unicode(item[0])+u"**: ").encode('UTF-8'))
+        f.write((unicode(item[1])+u"  \n\n").encode('UTF-8'))
+    f.close()
+
 def readTerms():
     # read the terms from the file: terms.txt
     terms = [line.rstrip('\n') for line in open('terms.txt')]
@@ -53,7 +63,7 @@ for term in terms:
     # search for the term and store its definition.
     definitions.append(searchTerm(term))
 
-printAll(definitions)
+writeTerms(definitions)
 # ==========================   END MAIN FUNCTION   =============================
 # ===========================   BEGIN DEBUGGING   ==============================
 # ============================   END DEBUGGING   ===============================
